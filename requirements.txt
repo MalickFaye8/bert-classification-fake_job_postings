@@ -1,0 +1,33 @@
+# ============================================================
+# Devoir 3 - Fine-tuning BERT pour la classification de texte
+# Détection d'offres d'emploi frauduleuses (Fake Job Postings)
+# ============================================================
+
+# --- Deep Learning ---
+torch>=2.0.0              # Framework principal pour l'entraînement PyTorch
+torchvision>=0.15.0       # Utilitaires complémentaires PyTorch
+
+# --- NLP / Transformers ---
+transformers>=4.35.0      # Modèles pré-entraînés HuggingFace (BERT, tokenizer)
+tokenizers>=0.15.0        # Tokenization rapide (dépendance de transformers)
+
+# --- Données ---
+pandas>=2.0.0             # Chargement et manipulation du dataset CSV
+numpy>=1.24.0             # Calculs numériques
+
+# --- Métriques & Évaluation ---
+scikit-learn>=1.3.0       # Accuracy, F1-score, matrice de confusion, split stratifié
+
+# --- Visualisation ---
+matplotlib>=3.7.0         # Courbes loss/accuracy
+seaborn>=0.12.0           # Matrice de confusion stylisée
+
+# --- Interface de démonstration ---
+gradio>=4.0.0             # Interface web interactive pour la démo
+
+# --- Suivi des expériences ---
+wandb>=0.16.0             # Weights & Biases : logging des métriques et hyperparamètres
+
+# --- Utilitaires ---
+tqdm>=4.65.0              # Barres de progression pendant l'entraînement
+python-dotenv>=1.0.0      # Chargement des variables d'environnement (.env pour WANDB_API_KEY)
