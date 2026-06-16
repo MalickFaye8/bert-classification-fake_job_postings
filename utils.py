@@ -55,25 +55,33 @@ def set_seed(seed: int = 42) -> None:
 
 def compute_metrics(preds: list, labels: list) -> dict:
     """
-    Calcule les métriques d'évaluation pour la classification binaire.
+    Calcule les métriques d'évaluation pour la classification multi-classes.
 
-    On utilise F1-score 'weighted' plutôt que 'macro' car le dataset
-    est très déséquilibré (17014 réels vs 866 frauduleux, ratio ~20:1).
-    Le weighted F1 tient compte du déséquilibre en pondérant par support.
+    Deux F1-scores sont calculés :
+      - F1 macro    : moyenne non pondérée sur toutes les classes.
+                      Traite chaque classe ÉGALEMENT, y compris Executive (141 ex.)
+                      → métrique principale pour évaluer l'équité entre classes.
+      - F1 weighted : moyenne pondérée par le support de chaque classe.
+                      Reflet de la performance globale, favorise les classes maj.
+
+    Déséquilibre : 27:1 (Mid-Senior 3809 vs Executive 141)
+    → F1 macro est la métrique principale pour ce dataset multi-classes.
 
     Args:
-        preds:  Liste des prédictions du modèle (entiers 0 ou 1).
-        labels: Liste des vraies étiquettes (entiers 0 ou 1).
+        preds:  Liste des prédictions du modèle (entiers 0 à 6).
+        labels: Liste des vraies étiquettes (entiers 0 à 6).
 
     Returns:
-        Dictionnaire avec 'accuracy' et 'f1_weighted'.
+        Dictionnaire avec 'accuracy', 'f1_macro' et 'f1_weighted'.
     """
     accuracy = accuracy_score(labels, preds)
+    f1_macro = f1_score(labels, preds, average="macro", zero_division=0)
     f1_weighted = f1_score(labels, preds, average="weighted", zero_division=0)
 
     return {
         "accuracy": round(accuracy, 4),
-        "f1_weighted": round(f1_weighted, 4),
+        "f1_macro": round(f1_macro, 4),       # Métrique principale (multi-classes)
+        "f1_weighted": round(f1_weighted, 4),  # Métrique secondaire
     }
 
 

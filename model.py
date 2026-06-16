@@ -20,7 +20,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 # ============================================================
 
 def get_model_and_tokenizer(
-    num_labels: int = 2,
+    num_labels: int = 7,
     model_name: str = "bert-base-uncased",
 ) -> tuple:
     """
@@ -108,7 +108,7 @@ def save_model(
 
 def load_model(
     save_dir: str = "best_model",
-    num_labels: int = 2,
+    num_labels: int = 7,
     device: torch.device = None,
 ) -> tuple:
     """
