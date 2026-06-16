@@ -1,0 +1,66 @@
+# ============================================================
+# .gitignore — Devoir 3 BERT Classification
+# Exclut les fichiers lourds, secrets et temporaires
+# ============================================================
+
+# --- Données brutes (trop lourdes pour GitHub) ---
+data/
+*.csv
+*.tsv
+*.json
+*.jsonl
+
+# --- Checkpoints et modèles sauvegardés ---
+# Les fichiers .pt / .bin peuvent peser plusieurs centaines de Mo
+*.pt
+*.bin
+*.ckpt
+saved_model/
+checkpoints/
+best_model/
+
+# --- WandB : logs et artefacts locaux ---
+wandb/
+
+# --- Variables d'environnement (clés API, tokens) ---
+.env
+.env.local
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# --- Environnements virtuels ---
+venv/
+env/
+.venv/
+.env/
+
+# --- Jupyter Notebooks (checkpoints) ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Éditeurs et IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Système d'exploitation ---
+.DS_Store          # macOS
+Thumbs.db          # Windows
+desktop.ini        # Windows
+
+# --- Sorties générées (images, logs) ---
+outputs/
+logs/
+*.log
+figures/
